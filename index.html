@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MUTPROJECTtitle></title>
+</head>
+<style>
+    body {
+        margin:0;
+        padding:0;
+    }
+
+    div {
+        position: absolute;
+    }
+
+    img {
+        display:block;
+    }
+    .top img {
+        filter: contrast();
+    }
+
+    .bottom img {
+        transform: scaleY(-1);
+        /*filter: grayscale(100%);*/
+        filter:invert();
+        opacity: 0.4;
+        margin-top:7px;
+        margin-left:-3px;
+    }
+    .btn-control {
+        position: fixed;
+        top:0;
+        right:0;
+        z-index:10000;
+    }
+    .tick {
+        position:absolute;
+        width:50px;
+        height:50px;
+        z-index: 10000;
+        cursor: pointer;
+        border-radius:50%;
+        border-width: 10px;
+        border: solid;
+        border-color: yellow;
+        background-color: rgba(0,0,255,0.3);
+
+    }
+
+</style>
+<body>
+    <!--<div class="tick" draggable="true" id="tt">
+    </div>-->
+    <div class="btn-control">
+        <button id="btn_reset">RESET</button>
+        <button id="btn_top">TOP IMAGE</button>
+        <button id="btn_bottom">BOTTOM IMAGE</button>
+        <input type="range" id="volume" min="0.1" max="1" step="0.1" value="0.4">
+    </div>
+    <div class="top" id="img1">
+        <img src="1-T.jpg" >
+    </div>
+    <div class="bottom" id="img2">
+        <img src="1-B.jpg">
+    </div>
+    
+</body>
+<script>
+    document.addEventListener("DOMContentLoaded", ()=> {
+        var imgs = document.querySelectorAll('img')
+        var btn_top = document.getElementById("btn_top")
+        var btn_bottom = document.getElementById("btn_bottom")
+        var vol = document.getElementById("volume")
+        var tt = document.getElementById("tt")
+       
+
+        vol.addEventListener("input", (ev) => {
+            //console.log(ev.target.value)
+            imgs[1].style.opacity = ev.target.value
+            
+        })
+
+        btn_top.addEventListener("click", () => {
+            if(imgs[0].style.display == 'block') {
+                imgs[0].style.display = 'none'
+            }else {
+                imgs[0].style.display = 'block'
+            }
+        })
+
+        btn_bottom.addEventListener("click", () => {
+            if(imgs[1].style.display == 'block') {
+                imgs[1].style.display = 'none'
+            }else {
+                imgs[1].style.display = 'block'
+            }
+        })
+
+
+       {     //imgs.forEach(element => {
+            //    console.log(element)
+            console.log('hello')
+            imgs.forEach(el => {
+                el.style.display = 'block'
+            })
+            //});
+        }
+    })
+
+</script>
+</html>
